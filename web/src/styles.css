@@ -1,0 +1,307 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+/* `.dark` 挂在 <html> 上，所以既要匹配自身也要匹配后代 */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  /*
+   * 字体：Inter（西文/数字）+ 思源黑体（中文）。
+   * 思源黑体在 Google Fonts 上的名字是 Noto Sans SC，本机装了 Source Han Sans SC
+   * 时优先用本机版本（字重更全、体积为 0）；再往后是系统中文兜底，离线也不掉成宋体。
+   */
+  --font-sans:
+    "Inter", "Noto Sans SC", "Source Han Sans SC", "Source Han Sans CN", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", ui-sans-serif, system-ui, sans-serif;
+  --font-display:
+    "Inter", "Noto Sans SC", "Source Han Sans SC", "Source Han Sans CN", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-sm: calc(var(--radius) - 6px);
+  --radius-md: calc(var(--radius) - 3px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 14px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-body: var(--body-foreground);
+  --color-subtle: var(--subtle-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  /* 品牌紫三档 + 柔和紫（AI / 装饰） */
+  --color-brand: var(--brand);
+  --color-brand-light: var(--brand-light);
+  --color-brand-deep: var(--brand-deep);
+  --color-lilac: var(--lilac);
+  --color-lilac-foreground: var(--lilac-foreground);
+  --color-selected: var(--selected);
+  --color-field: var(--field);
+  --color-border: var(--border);
+  --color-border-hover: var(--border-hover);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/* ============ 亮色：暖灰白 + 紫 ============ */
+:root {
+  --radius: 1rem;
+  color-scheme: light;
+
+  --background: #fafaf9;
+  --foreground: #18181b; /* 一级文字 */
+  --body-foreground: #3f3f46; /* 正文 */
+  --muted-foreground: #71717a; /* 次级文字 */
+  --subtle-foreground: #a1a1aa; /* 辅助文字 */
+
+  --card: #ffffff;
+  --card-foreground: #18181b;
+  --popover: #ffffff;
+  --popover-foreground: #18181b;
+
+  --primary: #7c3aed; /* 品牌主色 */
+  --primary-hover: #6d28d9; /* 品牌 Hover */
+  --primary-foreground: #ffffff;
+
+  --brand: #8b5cf6;
+  --brand-light: #a78bfa;
+  --brand-deep: #7c3aed;
+  --lilac: #c4b5fd; /* 柔和紫：AI 状态、辅助装饰 */
+  --lilac-foreground: #4c1d95;
+
+  --secondary: #f5f3ff; /* 极浅紫 = 选中背景 */
+  --secondary-foreground: #6d28d9;
+  --muted: #f4f4f5; /* Hover 背景 */
+  --accent: #f5f3ff;
+  --accent-foreground: #6d28d9;
+  --selected: #f5f3ff;
+
+  --field: #fafafa; /* 输入框背景 */
+  --border: #e4e4e7;
+  --border-hover: #d4d4d8;
+  --input: #e4e4e7;
+  --ring: #8b5cf6;
+
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --success: #0284c7;
+  --success-foreground: #ffffff;
+  --warning: #d97706;
+  --warning-foreground: #ffffff;
+
+  --chart-1: #7c3aed;
+  --chart-2: #a78bfa;
+  --chart-3: #c4b5fd;
+  --chart-4: #38bdf8;
+  --chart-5: #f59e0b;
+
+  --sidebar: #ffffff;
+  --sidebar-foreground: #18181b;
+  --sidebar-primary: #7c3aed;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f5f3ff;
+  --sidebar-accent-foreground: #6d28d9;
+  --sidebar-border: #e4e4e7;
+  --sidebar-ring: #8b5cf6;
+
+  /* 品牌渐变（规范给定） */
+  --gradient-primary: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%);
+  --gradient-lilac: linear-gradient(135deg, #a78bfa 0%, #c4b5fd 100%);
+  --gradient-hero: linear-gradient(135deg, #4c1d95 0%, #6d28d9 55%, #8b5cf6 100%);
+
+  --shadow-soft:
+    0 1px 2px 0 color-mix(in oklab, #18181b 4%, transparent),
+    0 12px 28px -18px color-mix(in oklab, #18181b 22%, transparent);
+  --shadow-brand: 0 10px 30px -10px color-mix(in oklab, #8b5cf6 45%, transparent);
+}
+
+/* ============ 暗色 ============ */
+.dark {
+  color-scheme: dark;
+
+  --background: #0d0d0f;
+  --foreground: #fafafa;
+  --body-foreground: #e4e4e7;
+  --muted-foreground: #a1a1aa;
+  /* 暗色下 #71717a 只有 3.7:1，占位符 / 提示文字会发灰，提到 5.5:1 */
+  --subtle-foreground: #8e8e99;
+
+  --card: #18181b;
+  --card-foreground: #fafafa;
+  --popover: #202024;
+  --popover-foreground: #fafafa;
+
+  --primary: #a78bfa; /* 暗色里品牌色提亮 */
+  /* hover 要「提亮」而不是压暗：原来 #8b5cf6 配深色字只有 4.3:1，按下去反而变闷 */
+  --primary-hover: #c4b5fd;
+  --primary-foreground: #17121f;
+
+  --brand: #a78bfa;
+  --brand-light: #c4b5fd;
+  --brand-deep: #7c3aed;
+  --lilac: #c4b5fd;
+  --lilac-foreground: #2a203d;
+
+  --secondary: #2a203d;
+  --secondary-foreground: #c4b5fd;
+  --muted: #27272a;
+  --accent: #2a203d;
+  --accent-foreground: #c4b5fd;
+  --selected: #2a203d;
+
+  --field: #18181b;
+  /* 卡片底色 #18181b 上 #27272a 只有 1.19:1，描边按钮 / 输入框等于没有边线 */
+  --border: #2c2c31;
+  --border-hover: #52525b;
+  --input: #3f3f46;
+  --ring: #a78bfa;
+
+  --destructive: #f87171;
+  --destructive-foreground: #1a0a0a;
+  --success: #38bdf8;
+  --success-foreground: #0a1620;
+  --warning: #fbbf24;
+  --warning-foreground: #1a1204;
+
+  --chart-1: #a78bfa;
+  --chart-2: #8b5cf6;
+  --chart-3: #c4b5fd;
+  --chart-4: #38bdf8;
+  --chart-5: #fbbf24;
+
+  --sidebar: #111113;
+  --sidebar-foreground: #fafafa;
+  --sidebar-primary: #a78bfa;
+  --sidebar-primary-foreground: #17121f;
+  --sidebar-accent: #2a203d;
+  --sidebar-accent-foreground: #c4b5fd;
+  --sidebar-border: #2c2c31;
+  --sidebar-ring: #a78bfa;
+
+  --gradient-primary: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%);
+  --gradient-lilac: linear-gradient(135deg, #8b5cf6 0%, #c4b5fd 100%);
+  --gradient-hero: linear-gradient(135deg, #2e1d4d 0%, #4c1d95 45%, #6d28d9 80%, #8b5cf6 100%);
+
+  --shadow-soft:
+    0 1px 2px 0 rgb(0 0 0 / 0.4),
+    0 12px 28px -18px rgb(0 0 0 / 0.7);
+  --shadow-brand: 0 10px 30px -10px color-mix(in oklab, #a78bfa 35%, transparent);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    /* 兜底底色：404 / 错误页这类不套应用外壳的页面也能铺满主题背景 */
+    background-color: var(--color-background);
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-body);
+    font-family: var(--font-sans);
+    /* 卡片数量、词条数、页码这类数字到处都是，等宽数字避免列表里跳动 */
+    font-variant-numeric: tabular-nums;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    color: var(--color-foreground);
+    letter-spacing: -0.022em;
+  }
+  ::selection {
+    background: color-mix(in oklab, var(--color-primary) 22%, transparent);
+  }
+}
+
+@utility tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/** 柔和圆角卡片阴影：比 Tailwind 默认的 shadow 更淡、扩散更大 */
+@utility shadow-soft {
+  box-shadow: var(--shadow-soft);
+}
+
+/** 品牌紫光晕，用在主要按钮 / 浮层 */
+@utility shadow-brand {
+  box-shadow: var(--shadow-brand);
+}
+
+/** 品牌渐变底：按钮、强调块 */
+@utility bg-gradient-brand {
+  background-image: var(--gradient-primary);
+}
+
+@utility text-gradient-brand {
+  background-image: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/** 细格纹背景：只用在首页 hero，别铺满整个应用 */
+@utility bg-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, #ffffff 8%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, #ffffff 8%, transparent) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* 卡片配图排序时的拖拽反馈 */
+.drag-ghost {
+  opacity: 0.4;
+}
+
+/* 暗色下滚动条跟随主题，避免亮白滚动条割裂 */
+.dark ::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background-color: #3f3f46;
+  border-radius: 9999px;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background-color: #52525b;
+}
+.dark ::-webkit-scrollbar-track {
+  background-color: transparent;
+}
