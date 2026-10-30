@@ -21,12 +21,7 @@ export default defineConfig(({ mode }) => {
         "/static": { target: backendTarget, changeOrigin: true },
       },
     },
-    plugins: [
-      tsConfigPaths(),
-      tailwindcss(),
-      tanstackStart(),
-      react(),
-    ],
+    plugins: [tsConfigPaths(), tailwindcss(), tanstackStart(), react()],
     resolve: {
       alias: { "@": fileURLToPath(new URL("./src", import.meta.url)) },
     },
